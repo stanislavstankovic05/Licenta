@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -dynamiclib -Wl,-headerpad_max_install_names -L/opt/homebrew/opt/llvm/lib -undefined dynamic_lookup -o libVMMUPassO0.so -install_name @rpath/libVMMUPassO0.so CMakeFiles/VMMUPassO0.dir/VMMUPassO0.cpp.o

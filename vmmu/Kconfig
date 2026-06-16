@@ -1,0 +1,20 @@
+menu "VMMU — Software Memory Management Unit"
+
+config VMMU_MAX_IPC_SIZE
+    int "Maximum size in bytes for a single app<->kernel IPC copy"
+    default 512
+    help
+      Size of the static staging buffer used by copy_from_app and
+      copy_to_app. Any IPC transfer larger than this is rejected.
+      Must be a power of two. Increase if your app messages are large,
+      but keep in mind this is permanently allocated in BSS.
+
+config VMMU_FRAME_POOL_SIZE
+    int "Number of frames in the physical frame pool"
+    default 64
+    help
+      Total number of 4KB frames available for app heap allocation.
+      On the Nucleo F429ZI (256KB SRAM) with kernel overhead, 48-64
+      frames is a realistic maximum.
+
+endmenu

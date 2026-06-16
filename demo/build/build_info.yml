@@ -1,0 +1,58 @@
+cmake:
+  application:
+    configuration-dir: '/Users/davidstan/Documents/licenta/Licenta/demo'
+    source-dir: '/Users/davidstan/Documents/licenta/Licenta/demo'
+  board:
+    name: 'mps2'
+    path:
+     - '/Users/davidstan/zephyrproject/zephyr/boards/arm/mps2'
+    qualifiers: 'an386'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/Users/davidstan/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/Users/davidstan/zephyrproject/zephyr/boards/arm/mps2/mps2_an386.dts'
+    include-dirs:
+     - '/Users/davidstan/zephyrproject/modules/hal/ambiq/dts'
+     - '/Users/davidstan/zephyrproject/modules/hal/atmel/include'
+     - '/Users/davidstan/zephyrproject/modules/hal/bouffalolab/include'
+     - '/Users/davidstan/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/Users/davidstan/zephyrproject/modules/hal/gigadevice/include'
+     - '/Users/davidstan/zephyrproject/modules/hal/microchip/include'
+     - '/Users/davidstan/zephyrproject/modules/hal/microchip/dts'
+     - '/Users/davidstan/zephyrproject/modules/hal/nuvoton/dts'
+     - '/Users/davidstan/zephyrproject/modules/hal/nxp/dts'
+     - '/Users/davidstan/zephyrproject/modules/hal/stm32/dts'
+     - '/Users/davidstan/zephyrproject/modules/hal/ti/dts'
+     - '/Users/davidstan/zephyrproject/zephyr/include'
+     - '/Users/davidstan/zephyrproject/zephyr/include/zephyr'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/common'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/vendor'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/rx'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/x86'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/xtensa'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/sparc'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/riscv'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/posix'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/arm64'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/arm'
+     - '/Users/davidstan/zephyrproject/zephyr/dts/arc'
+     - '/Users/davidstan/zephyrproject/zephyr/dts'
+  kconfig:
+    files:
+     - '/Users/davidstan/zephyrproject/zephyr/boards/arm/mps2/mps2_an386_defconfig'
+     - '/Users/davidstan/Documents/licenta/Licenta/demo/prj.conf'
+    user-files:
+     - '/Users/davidstan/Documents/licenta/Licenta/demo/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/Users/davidstan/zephyr-sdk-1.0.0'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: '/Users/davidstan/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/Users/davidstan/.local/bin/west build -b mps2/an386 /Users/davidstan/Documents/licenta/Licenta/demo --build-dir /Users/davidstan/Documents/licenta/Licenta/demo/build'
+  topdir: '/Users/davidstan/zephyrproject'
+  version: '1.5.0'
