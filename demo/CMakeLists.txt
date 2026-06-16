@@ -15,7 +15,26 @@ target_sources(app PRIVATE
     ${VMMU_DIR}/heap/heap.c
     ${VMMU_DIR}/app/app.c
     ${VMMU_DIR}/tlb.c
+    ${VMMU_DIR}/boundary.c
+    ${VMMU_DIR}/libc_wrap.c
     ${VMMU_DIR}/pass_defaults.c
+)
+
+# libc wraps: every memcpy / memset / strcpy / etc. in the binary
+# (app code, libraries, even VMMU runtime self-calls) is routed through
+# vmmu_check before forwarding to the real picolibc function. The
+# relaxed bounds check in vmmu_check allows kernel-side SRAM accesses,
+# so the wrap doesn't break the VMMU's own internal use of memset.
+#
+# Kernel IPC wraps (-Wl,--wrap=k_msgq_put etc.) are NOT enabled here:
+# Zephyr's pre-link stage doesn't inherit target_link_options, so
+# __real_k_msgq_put ends up undefined in that step. The libc wraps work
+# because picolibc symbols don't appear in zephyr_pre0.elf.
+target_link_options(app PRIVATE
+    -Wl,--wrap=memcpy  -Wl,--wrap=memmove  -Wl,--wrap=memset
+    -Wl,--wrap=memcmp
+    -Wl,--wrap=strlen  -Wl,--wrap=strcpy   -Wl,--wrap=strncpy
+    -Wl,--wrap=strcmp  -Wl,--wrap=strncmp
 )
 
 target_include_directories(app PRIVATE
@@ -28,9 +47,8 @@ target_include_directories(app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-# mps2/an386 QEMU target: SRAM at 0x20000000, 4MB
 target_compile_definitions(app PRIVATE
     RAM_BASE_ADDR=0x20000000UL
-    RAM_SIZE_BYTES=0x400000UL
-    VMMU_NUM_FRAMES=64
+    RAM_SIZE_BYTES=0x30000UL
+    VMMU_NUM_FRAMES=16
 )
