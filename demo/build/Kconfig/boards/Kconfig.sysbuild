@@ -1,2 +1,0 @@
-# Load Sysbuild board Kconfig descriptions.
-osource "/Users/davidstan/zephyrproject/zephyr/boards/arm/mps2/Kconfig.sysbuild"

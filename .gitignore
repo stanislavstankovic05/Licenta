@@ -6,3 +6,21 @@ diagrams
 run.md
 save_file
 	
+
+# --- build artifacts ---
+build/
+*.so
+*.o
+__pycache__/
+.pytest_cache/
+
+# --- dependenta externa (gestionata de west, ~8GB) ---
+zephyrproject/
+
+# --- scratch / backups / download-uri ---
+backup_*/
+*.zip
+Thesis_template__*/
+Thesis_template__*.pdf
+Ghid_*.pdf
+documents/
